@@ -1,0 +1,31 @@
+{
+  "name": "converter-kcal-mets",
+  "version": "1.0.0",
+  "description": "Kcal METs converter",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "buildWin": "electron-packager . CKM --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kahiro-M/ConvKcal.git"
+  },
+  "keywords": [
+    "Electron",
+    "JavaScript",
+    "Dichromat",
+    "Simulator"
+  ],
+  "author": "Kahiro-M",
+  "license": " Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Kahiro-M/ConvKcal/issues"
+  },
+  "homepage": "https://github.com/Kahiro-M/ConvKcal/readme",
+  "devDependencies": {
+    "electron": "^2.0.18",
+    "electron-packager": "^13.1.1"
+  },
+  "dependencies": {}
+}
