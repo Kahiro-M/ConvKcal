@@ -1,11 +1,11 @@
 {
-  "name": "converter-kcal-mets",
+  "name": "converter-kcal",
   "version": "1.0.0",
-  "description": "Kcal METs converter",
+  "description": "Kcal converter",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "buildWin": "electron-packager . CKM --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar"
+    "buildWin": "electron-packager . ConvKcal --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
   "keywords": [
     "Electron",
     "JavaScript",
-    "Converter"
+    "Converter",
+    "Kcal"
   ],
   "author": "Kahiro-M",
   "license": " Apache-2.0",
@@ -26,7 +27,5 @@
     "electron": "^2.0.18",
     "electron-packager": "^13.1.1"
   },
-  "dependencies": {
-    "require": "^2.4.20"
-  }
+  "dependencies": {}
 }
