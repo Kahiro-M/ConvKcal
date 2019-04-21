@@ -8,7 +8,7 @@
     <!-- 数式表示ライブラリ -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
    </head>
-  <body>
+  <body onload="readFirst()">
     <h2>
       <!-- 消費カロリー(kcal) ＝ 1.05 * METs * 体重(kg) * 運動時間(h) -->
       <!-- 運動時間(h) ＝ 消費カロリー(kcal) / (1.05 * METs * 体重(kg) ) -->
@@ -33,7 +33,8 @@
     </h2>
     <form id="Inputs">
       <span class="InputMember">消費したいカロリー</span>:<input id="kcal" step="10" type="number" value="400" onchange="showResultWorkoutTimeTo('WorkoutTime')"><br>
-      <span class="InputMember">運動強度</span>:<input id="METs" step="0.1" type="number" value="4.0" onchange="showResultWorkoutTimeTo('WorkoutTime')"><br>
+			<span class="InputMember">運動強度</span>:<select id="METs" onchange="showResultWorkoutTimeTo('WorkoutTime')"></select><br>
+        <!-- <span class="InputMember">運動強度</span>:<input id="METs" step="0.1" type="number" value="4.0" onchange="showResultWorkoutTimeTo('WorkoutTime')"><br> -->
       <span class="InputMember">あなたの体重</span>:<input id="Weight" step="0.1" type="number" value="72.5" onchange="showResultWorkoutTimeTo('WorkoutTime')"><br>
       <h1>
         必要な運動時間:<span id="WorkoutTime"></span>(h)
