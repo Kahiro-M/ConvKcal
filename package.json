@@ -1,6 +1,6 @@
 {
   "name": "converter-kcal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Kcal converter",
   "main": "main.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "Kcal"
   ],
   "author": "Kahiro-M",
-  "license": " Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kahiro-M/ConvKcal/issues"
   },

@@ -18,18 +18,32 @@ class Culc{
   
   culcWorkoutTime(){
     // 運動時間(h) ＝ 消費カロリー(kcal) / (1.05 * METs * 体重(kg) )
-    return (this.kcal / (this.coefficient * this.METs * this.Weight));
+    var workouttime = this.kcal / (this.coefficient * this.METs * this.Weight);
+    console.log("運動時間:",workouttime);
+    return (workouttime);
   }
+
+  // outputByHourMinute(){
+  //   //運動時間を算出後、表示用の時分秒に整形する
+  //   var Time = Number(this.culcWorkoutTime().toFixed(2));
+  //   var Hour = Math.floor(Time);
+  //   var Min = Math.floor((Time-Hour)*60);
+  //   return Hour + "時間" + Min + "分";
+  // }
 
 }
 
 function showResultWorkoutTimeTo(ElementID){
+  //DOMから表示用のHTMLタグIDでオブジェクトを取得
   var elementForShow = document.getElementById(ElementID);
   var result = new Culc("kcal","METs","Weight");
+  var time = new TimeConvert(result.culcWorkoutTime(),0,0);
+  time.fixTime();
 
   //いったんリフレッシュ
 	elementForShow.innerHTML = "";
-  elementForShow.innerHTML = result.culcWorkoutTime().toFixed(2);
+  elementForShow.innerHTML = time.hour + "時間" + time.min + "分" + time.sec + "秒";
+
 }
 
 function readFirst(){
@@ -56,10 +70,10 @@ function cleateSelectbox(METs){
 
 
 
-class SelectboxList{
-	
+class SelectboxList{	
   constructor(){
     this.list = [
+      // {val:",,",txt:""},
       {val:"0.9",txt:" 0.9 [睡眠]"},
       {val:"1.0",txt:" 1.0 [椅子に座る]"},
       {val:"1.5",txt:" 1.5 [入浴]"},
@@ -78,7 +92,54 @@ class SelectboxList{
       {val:"10.0",txt:"10.0 [ランニング(10km/h),柔道,空手,水泳(平泳ぎ)]"},
       {val:"11.0",txt:"11.0 [水泳(バタフライ)]"},
       {val:"15.0",txt:"15.0 [ランニング(14.5km/h)]"},
-      // {val:",,",txt:""},
     ];
+  }
+}
+
+
+
+class TimeConvert{
+  constructor(hour,min,sec){
+    this.hour = hour;
+    this.min = min;
+    this.sec = sec;
+  }
+
+  fixTime(){
+    //一時保管用の秒数に変換後、時→分→秒の順に整形する。
+
+    var tmpHour = this.hour;
+    var tmpMin = this.min;
+    var tmpSec = this.sec;
+
+    //秒数に変換
+    var tmpTime = this.conv2sec(tmpHour,tmpMin,tmpSec);
+
+    //時に整形
+    this.hour = this.conv2hour(0,0,tmpTime);
+    //一時保管用の秒数を更新（時に整形した分を差し引く）
+    tmpTime = tmpTime - this.hour*3600;
+
+    //分に整形
+    this.min = this.conv2min(0,0,tmpTime);
+    //一時保管用の秒数を更新（時に整形した分を差し引く）
+    tmpTime = tmpTime - this.min*60;
+
+    //秒に整形（小数などの整理）
+    this.sec = this.conv2sec(0,0,tmpTime);
+    
+    console.log(this.hour,"h",this.min,"m",this.sec,"s");
+  }
+
+  conv2hour(inH,inM,inS){
+    return Math.floor(inH + inM/60 + inS/(60*60));
+  }
+
+  conv2min(inH,inM,inS){
+    return Math.floor(inH*60 + inM + inS/60);
+  }
+
+  conv2sec(inH,inM,inS){
+    return Math.floor(inH*60*60 + inM*60 + inS);
   }
 }
